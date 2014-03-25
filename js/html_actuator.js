@@ -47,7 +47,23 @@ HTMLActuator.prototype.clearContainer = function (container) {
 };
 
 HTMLActuator.prototype.addTile = function (tile) {
+  var text = new Array(14);
+  text[0] = "";
+  text[1] = "HTML";
+  text[2] = "Java";
+  text[3] = "Pascal";
+  text[4] = "VB";
+  text[5] = "JS";
+  text[6] = "Ajax";
+  text[7] = "PHP";
+  text[8] = "Python";
+  text[9] = "Perl";
+  text[10] = "C/C++";
+  text[11] = "Lisp";
+  text[12] = "";
+  text[13] = ""; 
   var self = this;
+  var text2 = function (n) { var r = 0; while (n > 1) r++, n >>= 1; return r; }
 
   var wrapper   = document.createElement("div");
   var inner     = document.createElement("div");
@@ -62,7 +78,7 @@ HTMLActuator.prototype.addTile = function (tile) {
   this.applyClasses(wrapper, classes);
 
   inner.classList.add("tile-inner");
-  inner.textContent = tile.value;
+  inner.textContent = text[text2(tile.value)];
 
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first
@@ -125,8 +141,20 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
 };
 
 HTMLActuator.prototype.message = function (won) {
+  var mytxt=new Array(9);
+  mytxt[0] = "Java";
+  mytxt[1] = "Pascal";
+  mytxt[2] = "VB";
+  mytxt[3] = "JS";
+  mytxt[4] = "Ajax";
+  mytxt[5] = "PHP";
+  mytxt[6] = "Python";
+  mytxt[7] = "Perl";
+  mytxt[8] = "C/C++";
+  var text3 = function (m) { var r = 0; while (m > 1) r++, m >>= 1; return r; }
+
   var type    = won ? "game-won" : "game-over";
-  var message = won ? "You win!" : "Game over!";
+  var message = won ? "Lisp...." : mytxt[text3(maxscore)-2];
 
   this.messageContainer.classList.add(type);
   this.messageContainer.getElementsByTagName("p")[0].textContent = message;
